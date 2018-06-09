@@ -949,17 +949,13 @@
                     }
                     return (React.createElement(Mutation, __assign$3({}, opts, { mutation: document, ignoreResults: true }), function (mutate, result) {
                         var name = operationOptions.name || 'mutate';
-                        var childProps = (_a = {}, _a[name] = mutate, _a);
+                        var childProps = (_a = {}, _a[name] = __assign$3({ doMutate: mutate }, result), _a);
                         if (operationOptions.props) {
-                            var newResult = (_b = {},
-                                _b[name] = mutate,
-                                _b.ownProps = props,
-                                _b);
+                            var newResult = __assign$3({}, childProps, { ownProps: props });
                             childProps = operationOptions.props(newResult);
                         }
-                        var mergedChildProps = __assign$3({}, childProps, result);
-                        return React.createElement(WrappedComponent, __assign$3({}, props, mergedChildProps));
-                        var _a, _b;
+                        return React.createElement(WrappedComponent, __assign$3({}, props, childProps));
+                        var _a;
                     }));
                 };
                 GraphQL.displayName = graphQLDisplayName;
