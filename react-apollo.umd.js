@@ -949,7 +949,7 @@
                     }
                     return (React.createElement(Mutation, __assign$3({}, opts, { mutation: document, ignoreResults: true }), function (mutate, result) {
                         var name = operationOptions.name || 'mutate';
-                        var childProps = __assign$3((_a = {}, _a[name] = mutate, _a), (result || {}));
+                        var childProps = (_a = {}, _a[name] = mutate, _a);
                         if (operationOptions.props) {
                             var newResult = (_b = {},
                                 _b[name] = mutate,
@@ -957,7 +957,8 @@
                                 _b);
                             childProps = operationOptions.props(newResult);
                         }
-                        return React.createElement(WrappedComponent, __assign$3({}, props, childProps));
+                        var mergedChildProps = __assign$3({}, childProps, result);
+                        return React.createElement(WrappedComponent, __assign$3({}, props, mergedChildProps));
                         var _a, _b;
                     }));
                 };
