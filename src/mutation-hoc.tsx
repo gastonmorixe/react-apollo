@@ -58,18 +58,17 @@ export function mutation<
 
         return (
           <Mutation {...opts} mutation={document} ignoreResults>
-            {(mutate, result) => {
+            {(mutate: Function, result: Object) => {
               const name = operationOptions.name || 'mutate';
-              let childProps = { [name]: mutate };
+              let childProps = { [name]: { doMutate: mutate, ...result } };
               if (operationOptions.props) {
-                const newResult: OptionProps<TProps, TData> = {
-                  [name]: mutate,
+                const newResult = {
+                  ...childProps,
                   ownProps: props,
                 };
                 childProps = operationOptions.props(newResult) as any;
               }
-              const mergedChildProps = { ...childProps, ...result };
-              return <WrappedComponent {...props} {...mergedChildProps} />;
+              return <WrappedComponent {...props} {...childProps} />;
             }}
           </Mutation>
         );
