@@ -60,7 +60,7 @@ export function mutation<
           <Mutation {...opts} mutation={document} ignoreResults>
             {(mutate, result) => {
               const name = operationOptions.name || 'mutate';
-              let childProps = { [name]: mutate, ...(result || {}) };
+              let childProps = { [name]: mutate };
               if (operationOptions.props) {
                 const newResult: OptionProps<TProps, TData> = {
                   [name]: mutate,
@@ -68,8 +68,8 @@ export function mutation<
                 };
                 childProps = operationOptions.props(newResult) as any;
               }
-
-              return <WrappedComponent {...props} {...childProps} />;
+              const mergedChildProps = { ...childProps, ...result };
+              return <WrappedComponent {...props} {...mergedChildProps} />;
             }}
           </Mutation>
         );
