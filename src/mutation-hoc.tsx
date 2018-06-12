@@ -57,7 +57,7 @@ export function mutation<
         }
 
         return (
-          <Mutation {...opts} mutation={document} ignoreResults>
+          <Mutation {...opts} mutation={document}>
             {(mutate: Function, result: Object) => {
               const name = operationOptions.name || 'mutate';
               let childProps = { [name]: { doMutate: mutate, ...result } };
