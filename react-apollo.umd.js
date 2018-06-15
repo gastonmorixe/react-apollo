@@ -947,7 +947,7 @@
                     if (!opts.variables && operation.variables.length > 0) {
                         opts.variables = calculateVariablesFromProps(operation, props, graphQLDisplayName, getDisplayName(WrappedComponent));
                     }
-                    return (React.createElement(Mutation, __assign$3({}, opts, { mutation: document, ignoreResults: true }), function (mutate, result) {
+                    return (React.createElement(Mutation, __assign$3({}, opts, { mutation: document }), function (mutate, result) {
                         var name = operationOptions.name || 'mutate';
                         var childProps = (_a = {}, _a[name] = __assign$3({ doMutate: mutate }, result), _a);
                         if (operationOptions.props) {
